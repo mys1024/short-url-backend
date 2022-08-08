@@ -17,6 +17,7 @@ router.get("/:key", (ctx) => {
     ctx.response.status = 404;
     return;
   }
+  ctx.response.status = 301;
   ctx.response.redirect(url);
 });
 
