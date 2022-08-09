@@ -21,7 +21,7 @@ router.post("/url", async (ctx) => {
     return;
   }
   // store url
-  const key = await urlDao.add(url);
+  const key = await urlDao.ensureOne(url);
   // response
   ctx.response.body = { key, url };
 });

@@ -12,13 +12,13 @@ router.get("/:key", async (ctx) => {
     ctx.response.status = 400;
     return;
   }
-  const url = await urlDao.get(key);
+  const url = await urlDao.findOne(key);
   if (!url) {
     ctx.response.status = 404;
     return;
   }
   ctx.response.status = 301;
-  ctx.response.redirect(url);
+  ctx.response.redirect(url.value);
 });
 
 export default router;
