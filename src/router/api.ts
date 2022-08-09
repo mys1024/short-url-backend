@@ -1,5 +1,5 @@
 import { oak } from "../deps.ts";
-import urlDao from "../dao/url.ts";
+import urlDao from "../db/dao/url.ts";
 
 const router = new oak.Router();
 
@@ -23,10 +23,7 @@ router.post("/url", async (ctx) => {
   // store url
   const key = await urlDao.add(url);
   // response
-  ctx.response.body = {
-    key,
-    url,
-  };
+  ctx.response.body = { key, url };
 });
 
 export default router;
