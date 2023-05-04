@@ -1,5 +1,5 @@
 import { oak } from "../deps.ts";
-import urlDao from "../db/dao/url.ts";
+import { getUrl } from "../dao/url.ts";
 import apiRouter from "./api.ts";
 
 const router = new oak.Router();
@@ -12,13 +12,13 @@ router.get("/:key", async (ctx) => {
     ctx.response.status = 400;
     return;
   }
-  const url = await urlDao.findOne(key);
+  const url = await getUrl(key);
   if (!url) {
     ctx.response.status = 404;
     return;
   }
   ctx.response.status = 301;
-  ctx.response.redirect(url.value);
+  ctx.response.redirect(url);
 });
 
 export default router;
